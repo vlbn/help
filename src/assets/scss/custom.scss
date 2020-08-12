@@ -1,0 +1,89 @@
+@charset "utf-8";
+
+@import url("https://fonts.googleapis.com/css?family=Manjari:400,700&display=swap");
+
+$color1: #ffde4b;
+$color2: #4d4d4d;
+$color3: #eff0eb;
+$color4: #cfcfcd;
+
+// global variables
+$family-sans-serif: "Manjari", sans-serif;
+$body-font-size: 1em;
+
+$body-background-color: white;
+$body-color: $color2;
+$primary: $color1;
+$link: $color2;
+$link-hover: $color1;
+
+$control-border-width: 1px;
+$input-shadow: none;
+
+// bulma styles
+@import "bulma";
+
+a {
+  outline: none !important;
+  img {
+    outline: none !important;
+  }
+}
+img {
+  border: 0 !important;
+}
+
+body {
+  line-height: normal;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.centerXY {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+}
+
+.fv {
+  &-100 {
+    min-height: 100vh;
+  }
+  &-90 {
+    min-height: 91vh;
+  }
+  &-80 {
+    min-height: 80vh;
+  }
+  &-70 {
+    min-height: 70vh;
+  }
+  &-60 {
+    min-height: 60vh;
+  }
+  &-50 {
+    min-height: 50vh;
+  }
+}
+
+.zi {
+  &--2 {
+    z-index: -2;
+  }   
+  &--1 {
+    z-index: -1;
+  }  
+  &-0 {
+    z-index: 0;
+  }
+  &-1 {
+    z-index: 1;
+  }
+  &-2 {
+    z-index: 2;
+  }
+}
+
