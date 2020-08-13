@@ -39,17 +39,8 @@
 import { mousePointer } from "../mixins/mousePointer";
 import { homeTweens } from "../mixins/homeTweens";
 
-// this import goes here for the example's sake
-import LocomotiveScroll from "locomotive-scroll";
-
 export default {
   mixins: [mousePointer, homeTweens],
-  name: "Home",
-  methods: {
-    scrollMeTo(target, duration) {
-      const scroll = new LocomotiveScroll();
-      scroll.scrollTo(target, duration);
-    }
-  }
+  name: "Home"
 };
 </script>

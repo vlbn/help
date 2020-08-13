@@ -5,11 +5,18 @@ gsap.registerPlugin(ScrollTrigger);
 import LocomotiveScroll from "locomotive-scroll";
 
 export const homeTweens = {
+  data() {
+    return {
+      x: null
+    };
+  },
   mounted: function () {
     const locoScroll = new LocomotiveScroll({
       el: document.querySelector(".home"),
       smooth: true
     });
+
+    this.x = locoScroll;
 
     locoScroll.on("scroll", ScrollTrigger.update);
 
@@ -65,5 +72,11 @@ export const homeTweens = {
 
     ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
     ScrollTrigger.refresh();
+  },
+  methods: {
+    scrollMeTo(target, duration) {
+      var z = this.x;
+      z.scrollTo(target, duration);
+    }
   }
 };

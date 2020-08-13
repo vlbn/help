@@ -29,11 +29,11 @@
     "not dead"
   ],
   "keywords": [
+    "scrollerproxy",
     "vue",
-    "greensock",
-    "vuejs",
-    "locomotivescroll",
+    "scrolltrigger",
+    "locomotive-scroll",
     "gsap"
   ],
-  "description": "experiments with GSAP and locomotiveScroll "
+  "description": "gsap excercise with locomotive-scroll and vue"
 }
