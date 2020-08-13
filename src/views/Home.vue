@@ -1,27 +1,21 @@
 <template>
   <div class="home">
-
     <!-- my custom pointer -->
     <div ref="mousePointerA" class="mouse-pointer-a"></div>
     <div ref="mousePointerB" class="mouse-pointer-b"></div>
 
     <!-- scene 1 -->
     <section class="fv-100 scene1">
-      <div ref="separador1" class="separador-1"></div>
-      <div ref="nombre" class="nombre">
+      <div ref="logo" class="logo">
         <figure class="image is-100x100">
-          <img
-            class="is-rounded"
-            src="@/assets/images/x.jpg"
-            alt="help me world"
-          />
+          <img class="is-rounded" src="../assets/images/logo.jpg" alt="help me world">
         </figure>
       </div>
 
       <div
         ref="mouseIcon"
-        class="mouse-container"
-        @click="scrollMeTo('.scene2', 4)"
+        class="mouse-container pointer"
+        @click="scrollMeTo('.scene2', 3)"
         @mouseenter="mousePointerEnter"
         @mouseleave="mousePointerLeave"
       >
@@ -32,26 +26,30 @@
     </section>
 
     <!-- scene 2 -->
-    <section class="fv-100 scene2 centerXY has-background-warning has-text-white">
-      <div
-        @mouseenter="mousePointerEnter"
-        @mouseleave="mousePointerLeave"
-      >
-        <h1 class="is-size-1">help me world =(</h1>
+    <section class="fv-100 scene2 centerXY has-background-success has-text-white">
+      <div @mouseenter="mousePointerEnter" @mouseleave="mousePointerLeave">
+        <h1 class="is-size-1">😌 namaste</h1>
       </div>
     </section>
-
   </div>
 </template>
 
 <script>
 // mixins are sexy yeah!
 import { mousePointer } from "../mixins/mousePointer";
-import { reUsables } from "../mixins/reUsables";
 import { homeTweens } from "../mixins/homeTweens";
 
+// this import goes here for the example's sake
+import LocomotiveScroll from "locomotive-scroll";
+
 export default {
-  mixins: [mousePointer, reUsables, homeTweens],
+  mixins: [mousePointer, homeTweens],
   name: "Home",
+  methods: {
+    scrollMeTo(target, duration) {
+      const scroll = new LocomotiveScroll();
+      scroll.scrollTo(target, duration);
+    }
+  }
 };
 </script>
