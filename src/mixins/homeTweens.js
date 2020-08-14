@@ -12,6 +12,8 @@ export const homeTweens = {
   },
   mounted: function () {
 
+    // --- locomotive-scroll init --- //
+
     const locoScroll = new LocomotiveScroll({
       el: document.querySelector(".home"),
       smooth: true
@@ -40,7 +42,7 @@ export const homeTweens = {
         : "fixed"
     });
 
-    // --- intro --- //
+    // --- scene 1 --- //
 
     var introTl = gsap.timeline({
       scrollTrigger: {
@@ -71,7 +73,7 @@ export const homeTweens = {
       },
     );
     
-    // --- namaste --- //
+    // --- scene 2 --- //
 
     gsap.from(".namaste", {
       scrollTrigger: {
@@ -84,7 +86,9 @@ export const homeTweens = {
       scaleX: 0,
       transformOrigin: "left center", 
       ease: "none"
-    });    
+    });
+    
+    // --- scrollTrigger update, do not move this --- //
 
     ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
     ScrollTrigger.refresh();
