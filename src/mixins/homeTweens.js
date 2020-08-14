@@ -11,6 +11,7 @@ export const homeTweens = {
     };
   },
   mounted: function () {
+
     const locoScroll = new LocomotiveScroll({
       el: document.querySelector(".home"),
       smooth: true
@@ -39,15 +40,17 @@ export const homeTweens = {
         : "fixed"
     });
 
+    // --- intro --- //
+
     var introTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".scene1",
         scroller: ".home",
         pin: true,
         pinSpacing: true,
-        start: "top",
-        end: "+=60%",
-        scrub: true,
+        start: "top%",
+        end: "bottom 10px",
+        scrub: .1,
         markers: false
       }
     });
@@ -58,7 +61,6 @@ export const homeTweens = {
         yPercent: -200,
         autoAlpha: 0
       },
-      "<"
     );
     introTl.to(
       this.$refs.logo,
@@ -67,11 +69,26 @@ export const homeTweens = {
         yPercent: 50,
         autoAlpha: 0
       },
-      "<"
     );
+    
+    // --- namaste --- //
+
+    gsap.from(".namaste", {
+      scrollTrigger: {
+        trigger: ".scene2",
+        scroller: ".home",
+        scrub: 1,
+        start: "top 50%",
+        end: "bottom 100%"
+      },
+      scaleX: 0,
+      transformOrigin: "left center", 
+      ease: "none"
+    });    
 
     ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
     ScrollTrigger.refresh();
+    
   },
   methods: {
     scrollMeTo(target, duration) {

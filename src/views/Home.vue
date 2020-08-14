@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+
     <!-- my custom pointer -->
     <div ref="mousePointerA" class="mouse-pointer-a"></div>
     <div ref="mousePointerB" class="mouse-pointer-b"></div>
@@ -28,9 +29,10 @@
     <!-- scene 2 -->
     <section class="fv-100 scene2 centerXY has-background-success has-text-white">
       <div @mouseenter="mousePointerEnter" @mouseleave="mousePointerLeave">
-        <h1 class="is-size-1">😌 namaste</h1>
+        <h1 class="is-size-1 namaste">😌 namaste</h1>
       </div>
     </section>
+
   </div>
 </template>
 
