@@ -1,4 +1,4 @@
-# help
+# help me world
 gsap excercise with locomotive-scroll and vue
 
 # live DEMO at codeSandbox
