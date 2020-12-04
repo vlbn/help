@@ -1,5 +1,5 @@
 # help me world
-gsap excercise with locomotive-scroll and vue
+gsap excercise with locomotive-scroll and VUE
 
 ### 🎬 live DEMO at CodeSandbox.io
 
