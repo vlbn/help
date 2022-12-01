@@ -34,7 +34,7 @@
       class="fv-100 scene2 centerXY has-background-success has-text-white"
     >
       <div @mouseenter="mousePointerEnter" @mouseleave="mousePointerLeave">
-        <h1 class="is-size-1 namaste">😌 namaste</h1>
+        <h1 class="is-size-1 namaste">😌 namaste ☕</h1>
       </div>
     </section>
   </div>
