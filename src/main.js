@@ -9,9 +9,7 @@ import "./assets/scss/_index.scss";
 
 Vue.config.productionTip = false;
 
-var vm = new Vue({
+new Vue({
   router,
   render: (h) => h(App)
 }).$mount("#app");
-
-global.vm = vm;
