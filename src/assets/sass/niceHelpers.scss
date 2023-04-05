@@ -5,25 +5,25 @@
     &-0 {
         position: fixed;
     }
-    &-top-right {
+    &-tr {
         position: fixed;
         top: 0.75rem;
         right: 0.75rem;
     }
-    &-top-left {
+    &-tl {
         position: fixed;
         top: 1rem;
         left: 1rem;
     }
-    &-bottom {
+    &-b {
         position: fixed;
         bottom: 0.75rem;
-        &-right {
+        &-r {
             position: fixed;
             right: 1rem;
             bottom: 1rem;
         }
-        &-left {
+        &-l {
             position: fixed;
             left: 1rem;
             bottom: 1rem;
