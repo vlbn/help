@@ -95,6 +95,7 @@ onMounted(() => {
 
 const scrollMeTo = (target, duration) => {
   locoScrollState.value.scrollTo(target, duration);
+  console.log(locoScrollState.value);
 };
 </script>
 
