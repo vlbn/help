@@ -10,7 +10,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div :class="position">
+    <div :class="position" class="onTopOfEverything">
         <div class="mouse-container pointer">
             <div class="mouse-body">
                 <div class="mouse-wheel"></div>
@@ -21,6 +21,9 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 // mouse icon - scroll indicator
+.onTopOfEverything {
+    z-index: 9999 !important;
+}
 .mouse {
     &-container {
         margin: 3rem;
