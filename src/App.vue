@@ -4,27 +4,32 @@ import { onMounted, ref } from "vue";
 import FancyCursor from "./components/FancyCursor.vue";
 import FancyMouseIcon from "./components/FancyMouseIcon.vue";
 
-import LocomotiveScroll from "locomotive-scroll";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import LocomotiveScroll from "locomotive-scroll";
+
 gsap.registerPlugin(ScrollTrigger);
 
-let locoScrollState = ref(null);
+// --- locomotive scroll instance ref --- //
+let lmsInstance = ref();
 
 // --- the actors --- //
-
 let mouseIcon = ref();
 let scene1Actor1 = ref();
 
-onMounted(() => {
-  // --- locomotive-scroll init --- //
+// --- methods --- //
+const scrollMeTo = (target, duration) => {
+  lmsInstance.value.scrollTo(target, duration);
+};
 
+onMounted(() => {
   const locoScroll = new LocomotiveScroll({
     el: document.querySelector(".wrapper"),
     smooth: true,
   });
 
-  locoScrollState.value = locoScroll;
+  lmsInstance.value = locoScroll;
 
   locoScroll.on("scroll", ScrollTrigger.update);
 
@@ -47,7 +52,7 @@ onMounted(() => {
 
   // --- scene 1 --- //
 
-  var introTl = gsap.timeline({
+  let introTl = gsap.timeline({
     scrollTrigger: {
       trigger: ".scene1",
       scroller: ".wrapper",
@@ -60,8 +65,8 @@ onMounted(() => {
     },
   });
   introTl.to(mouseIcon.value, {
-    duration: 1.5,
-    yPercent: -200,
+    duration: 2.5,
+    yPercent: -100,
     autoAlpha: 0,
   });
   introTl.to(scene1Actor1.value, {
@@ -89,31 +94,30 @@ onMounted(() => {
 
   ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
   ScrollTrigger.refresh();
+
+  //
 });
 
-// --- methods --- //
-
-const scrollMeTo = (target, duration) => {
-  locoScrollState.value.scrollTo(target, duration);
-  console.log(locoScrollState.value);
-};
+//
 </script>
 
 <template>
   <FancyCursor trigger=".pointer" />
-  <FancyMouseIcon position="is-fixed-b-r" @click="scrollMeTo('.scene2', 3)" />
-
   <div class="wrapper">
     <!-- scene 1 -->
     <section class="scene1 hero is-danger is-fullheight">
       <div class="hero-body">
-        <div ref="scene1Actor1" class="">
+        <div ref="scene1Actor1">
           <p class="title">Fullheight hero</p>
           <p class="subtitle">Fullheight subtitle</p>
         </div>
       </div>
+      <div class="is-fixed-b">
+        <div class="is-flex is-justify-content-center" ref="mouseIcon">
+          <FancyMouseIcon @click="scrollMeTo('.scene2', 3)" />
+        </div>
+      </div>
     </section>
-
     <!-- scene 2 -->
     <section class="scene2 hero is-warning is-fullheight">
       <div class="hero-body">
