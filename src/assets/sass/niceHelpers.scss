@@ -2,8 +2,10 @@
     is-fixed
 */
 .is-fixed {
-    &-0 {
+    &-t {
         position: fixed;
+        top: 0.75rem;
+        width: 100%;
     }
     &-tr {
         position: fixed;
@@ -18,16 +20,17 @@
     &-b {
         position: fixed;
         bottom: 0.75rem;
-        &-r {
-            position: fixed;
-            right: 1rem;
-            bottom: 1rem;
-        }
-        &-l {
-            position: fixed;
-            left: 1rem;
-            bottom: 1rem;
-        }
+        width: 100%;
+    }
+    &-br {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+    }
+    &-bl {
+        position: fixed;
+        left: 1rem;
+        bottom: 1rem;
     }
 }
 
