@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, ref } from "vue";
 
-import FancyCursor from "./components/FancyCursor.vue";
 import FancyMouseIcon from "./components/FancyMouseIcon.vue";
+import GitHubLogo from "./components/GitHubLogo.vue";
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,6 +17,7 @@ let lmsInstance = ref();
 // --- the actors --- //
 let mouseIcon = ref();
 let scene1Actor1 = ref();
+let scene1Actor2 = ref();
 
 // --- methods --- //
 const scrollMeTo = (target, duration) => {
@@ -59,7 +60,7 @@ onMounted(() => {
       pin: true,
       pinSpacing: true,
       start: "top%",
-      end: "bottom 10px",
+      end: "bottom 50px",
       scrub: 0.1,
       markers: false,
     },
@@ -74,6 +75,12 @@ onMounted(() => {
     yPercent: 50,
     autoAlpha: 0,
   });
+  introTl.to(scene1Actor2.value, {
+    duration: 5.5,
+    autoAlpha: 0,
+    scale: 2.9,
+    xPercent: 150,
+  });
 
   // --- scene 2 --- //
 
@@ -82,12 +89,14 @@ onMounted(() => {
       trigger: ".scene2",
       scroller: ".wrapper",
       scrub: 1,
-      start: "top 50%",
+      scaleZ: 2,
+      start: "top 250%",
       end: "bottom 100%",
     },
     scaleX: 0,
-    transformOrigin: "left center",
+    transformOrigin: "center center",
     ease: "none",
+    autoAlpha: 1,
   });
 
   // --- scrollTrigger update, do not move this --- //
@@ -102,14 +111,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <FancyCursor trigger=".pointer" />
   <div class="wrapper">
     <!-- scene 1 -->
-    <section class="scene1 hero is-danger is-fullheight">
-      <div class="hero-body">
-        <div ref="scene1Actor1">
-          <p class="title">Fullheight hero</p>
-          <p class="subtitle">Fullheight subtitle</p>
+    <section class="scene1 hero is-fullheight">
+      <div class="hero-body is-flex is-justify-content-center">
+        <div ref="scene1Actor1" class="mr-5">
+          <img src="./assets/media/fancy.svg" />
+        </div>
+        <div ref="scene1Actor2">
+          <strong>gsap</strong> excercise with
+          <strong class="is-size-4">locomotive-scroll</strong> and
+          <strong>vue</strong>
         </div>
       </div>
       <div class="is-fixed-b">
@@ -119,11 +131,19 @@ onMounted(() => {
       </div>
     </section>
     <!-- scene 2 -->
-    <section class="scene2 hero is-warning is-fullheight">
-      <div class="hero-body">
-        <div class="namaste" ref="scene2Actor1">
-          <p class="title">Fullheight hero</p>
-          <p class="subtitle">Fullheight subtitle</p>
+    <section class="scene2 hero is-fullheight">
+      <div class="hero-body is-flex is-justify-content-center">
+        <div class="namaste m-6" ref="scene2Actor1">
+          <img src="https://picsum.photos/900/600" />
+        </div>
+
+        <div class="is-size-5">
+          <a href="https://github.com/vlbn/help"><GitHubLogo /></a>
+        </div>
+      </div>
+      <div class="is-fixed-b">
+        <div class="is-flex is-justify-content-center">
+          <FancyMouseIcon @click="scrollMeTo('.wrapper', 0.3)" />
         </div>
       </div>
     </section>
