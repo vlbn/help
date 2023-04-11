@@ -28,7 +28,7 @@ onMounted(() => {
     autoAlpha: 0,
   });
   scrollTl = gsap
-    .timeline({ repeat: -1 })
+    .timeline({ repeat: -1, paused: false })
     .to(".mouse-wheel", {
       duration: 0.3,
       scale: 1.9,
@@ -36,13 +36,12 @@ onMounted(() => {
     })
     .to(".mouse-wheel", {
       duration: 0.5,
-      scale: 1.1,
-      y: 13,
+      scale: 0.9,
+      y: 10,
     })
     .to(".mouse-wheel", {
       autoAlpha: 0,
-    })
-    .play();
+    });
 });
 </script>
 
@@ -59,30 +58,23 @@ onMounted(() => {
   z-index: 9999 !important;
   margin: 3rem;
   width: 25px;
-  height: 43px;
+  height: 40px;
 }
 .mouse-body {
+  display: flex;
+  justify-content: center;
   cursor: pointer;
-  display: block;
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: 100%;
-  border: 0.1em solid #6e6e6e60;
+  border: 0.1rem solid #6e6e6e60;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
 }
 
 .mouse-wheel {
-  display: block;
-  margin: 0 0 0 -2px;
-  position: relative;
-  top: 5px;
-  left: 50%;
-  width: 4px;
-  height: 4px;
+  margin-top: 0.3rem;
+  width: 5px;
+  height: 5px;
   background: #6e6e6e;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
