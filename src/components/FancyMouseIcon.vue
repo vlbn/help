@@ -3,47 +3,61 @@ import { ref, onMounted } from "vue";
 import { gsap } from "gsap";
 
 const props = defineProps({
-  direction: {
-    type: String,
-    default() {
-      return "down";
-    },
+  isInteractive: {
+    type: Boolean,
+    default: true,
   },
-  color: {
+  wheelColor: {
     type: String,
-    default() {
-      return "#42b983";
-    },
+    default: "#42b983",
   },
 });
 
-let scrollTl = gsap.timeline({ paused: true });
-
-let theColor = ref(props.color);
-let theDirection = ref(props.direction);
+// mouse-wheel TimeLine
+let mwTl = ref();
 
 onMounted(() => {
+  // initial values
   gsap.set(".mouse-wheel", {
-    background: theColor.value,
+    background: props.wheelColor,
     autoAlpha: 0,
+    y: 0,
   });
-  scrollTl = gsap
+
+  // mouse-wheel TimeLine animation
+  mwTl = gsap
     .timeline({ repeat: -1 })
     .to(".mouse-wheel", {
-      duration: 0.3,
+      duration: 0.5,
       scale: 1.9,
       autoAlpha: 1,
     })
-    .to(".mouse-wheel", {
-      duration: 0.5,
-      scale: 1.1,
-      y: 13,
-    })
+    .to(
+      ".mouse-wheel",
+      {
+        duration: 0.5,
+        scale: 0.9,
+        y: 12,
+      },
+      0.3
+    )
     .to(".mouse-wheel", {
       autoAlpha: 0,
     })
-    .play();
+    .set(".mouse-wheel", {
+      y: 0,
+      scale: 0,
+    })
+    .paused(true);
+
+  //
+
+  if (props.isInteractive) {
+    mwTl.paused(false);
+  }
 });
+
+//
 </script>
 
 <template>
@@ -59,30 +73,23 @@ onMounted(() => {
   z-index: 9999 !important;
   margin: 3rem;
   width: 25px;
-  height: 43px;
+  height: 40px;
 }
 .mouse-body {
+  display: flex;
+  justify-content: center;
   cursor: pointer;
-  display: block;
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: 100%;
-  border: 0.1em solid #6e6e6e60;
+  border: 0.1rem solid #6e6e6e60;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
 }
 
 .mouse-wheel {
-  display: block;
-  margin: 0 0 0 -2px;
-  position: relative;
-  top: 5px;
-  left: 50%;
-  width: 4px;
-  height: 4px;
+  margin-top: 0.3rem;
+  width: 5px;
+  height: 5px;
   background: #6e6e6e;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
