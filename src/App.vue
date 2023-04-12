@@ -126,24 +126,23 @@ onMounted(() => {
       </div>
       <div class="is-fixed-b">
         <div class="is-flex is-justify-content-center" ref="mouseIcon">
-          <FancyMouseIcon @click="scrollMeTo('.scene2', 3)" />
+          <FancyMouseIcon @click="scrollMeTo('.scene2', 3)" wheelColor="#ffcc00" />
         </div>
       </div>
     </section>
     <!-- scene 2 -->
     <section class="scene2 hero is-fullheight">
       <div class="hero-body is-flex is-justify-content-center">
-        <div class="namaste m-6" ref="scene2Actor1">
+        <div
+          class="namaste m-6 pointer"
+          ref="scene2Actor1"
+          @click="scrollMeTo('.wrapper', 1.5)"
+        >
           <img src="https://picsum.photos/900/600" />
         </div>
 
         <div class="is-size-5">
           <a href="https://github.com/vlbn/help"><GitHubLogo /></a>
-        </div>
-      </div>
-      <div class="is-fixed-b">
-        <div class="is-flex is-justify-content-center">
-          <FancyMouseIcon @click="scrollMeTo('.wrapper', 0.3)" />
         </div>
       </div>
     </section>
