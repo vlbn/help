@@ -1,18 +1,12 @@
 import { fileURLToPath, URL } from "node:url";
 
-import purgeCSS from "vite-plugin-purgecss";
-
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
-    purgeCSS({
-      content: ["./index.html", "./src/**/*.vue"],
-      defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
-    }),
+    vue()
   ],
   resolve: {
     alias: {
