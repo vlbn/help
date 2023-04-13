@@ -1,17 +1,20 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { gsap } from "gsap";
 
 const props = defineProps({
-  isInteractive: {
-    type: Boolean,
-    default: true,
-  },
-  wheelColor: {
+  colorA: {
     type: String,
     default: "#42b983",
   },
+  colorB: {
+    type: String,
+    default: "#ffffff",
+  },
 });
+
+let colorA_ = ref(props.colorA);
+let colorB_ = ref(props.colorB);
 
 // mouse-wheel TimeLine
 let mwTl = ref();
@@ -19,9 +22,12 @@ let mwTl = ref();
 onMounted(() => {
   // initial values
   gsap.set(".mouse-wheel", {
-    background: props.wheelColor,
+    background: colorA_.value,
     autoAlpha: 0,
     y: 0,
+  });
+  gsap.set(".mouse-body", {
+    background: colorB_.value,
   });
 
   // mouse-wheel TimeLine animation
@@ -44,17 +50,20 @@ onMounted(() => {
     .to(".mouse-wheel", {
       autoAlpha: 0,
     })
-    .set(".mouse-wheel", {
+    .to(".mouse-wheel", {
       y: 0,
       scale: 0,
-    })
-    .paused(true);
+    });
+});
 
-  //
-
-  if (props.isInteractive) {
-    mwTl.paused(false);
-  }
+watch(props, () => {
+  // __colorA = props.colorA;
+  //if (props.wheelMovement) {
+  //  mwTl.reverse();
+  //  mwTl.play();
+  //} else {
+  //  mwTl.reverse(0);
+  // }
 });
 
 //

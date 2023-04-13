@@ -126,7 +126,7 @@ onMounted(() => {
       </div>
       <div class="is-fixed-b">
         <div class="is-flex is-justify-content-center" ref="mouseIcon">
-          <FancyMouseIcon @click="scrollMeTo('.scene2', 3)" wheelColor="#ffcc00" />
+          <FancyMouseIcon @click="scrollMeTo('.scene2', 3)" />
         </div>
       </div>
     </section>
