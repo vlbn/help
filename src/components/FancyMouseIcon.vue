@@ -56,14 +56,27 @@ onMounted(() => {
     });
 });
 
-watch(props, () => {
-  // __colorA = props.colorA;
-  //if (props.wheelMovement) {
-  //  mwTl.reverse();
-  //  mwTl.play();
-  //} else {
-  //  mwTl.reverse(0);
-  // }
+// scroll direction listener
+let scrollPositionChange = ref();
+let oldValue = 0;
+let newValue = 0;
+window.addEventListener("scroll", (e) => {
+  newValue = window.pageYOffset;
+  if (oldValue > newValue) {
+    scrollPositionChange.value = false;
+  } else if (oldValue < newValue) {
+    scrollPositionChange.value = true;
+  }
+  oldValue = newValue;
+});
+
+watch(scrollPositionChange, () => {
+  if (scrollPositionChange.value) {
+    mwTl.reverse(0);
+  } else {
+    mwTl.reverse();
+    mwTl.play();
+  }
 });
 
 //
