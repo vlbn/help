@@ -111,6 +111,11 @@ onMounted(() => {
 </script>
 
 <template>
+  <div class="is-fixed-b">
+    <div class="is-flex is-justify-content-center">
+      <FancyMouseIcon @click="scrollMeTo('.scene2', 3)" />
+    </div>
+  </div>
   <div class="wrapper">
     <!-- scene 1 -->
     <section class="scene1 hero is-fullheight">
@@ -122,11 +127,6 @@ onMounted(() => {
           <strong>gsap</strong> excercise with
           <strong class="is-size-4">locomotive-scroll</strong> and
           <strong>vue</strong>
-        </div>
-      </div>
-      <div class="is-fixed-b">
-        <div class="is-flex is-justify-content-center" ref="mouseIcon">
-          <FancyMouseIcon @click="scrollMeTo('.scene2', 3)" wheelColor="#ffcc00" />
         </div>
       </div>
     </section>
