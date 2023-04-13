@@ -15,7 +15,6 @@ gsap.registerPlugin(ScrollTrigger);
 let lmsInstance = ref();
 
 // --- the actors --- //
-let mouseIcon = ref();
 let scene1Actor1 = ref();
 let scene1Actor2 = ref();
 
@@ -65,11 +64,6 @@ onMounted(() => {
       markers: false,
     },
   });
-  introTl.to(mouseIcon.value, {
-    duration: 2.5,
-    yPercent: -100,
-    autoAlpha: 0,
-  });
   introTl.to(scene1Actor1.value, {
     duration: 2.5,
     yPercent: 50,
@@ -111,12 +105,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="is-fixed-b">
-    <div class="is-flex is-justify-content-center">
-      <FancyMouseIcon @click="scrollMeTo('.scene2', 3)" />
-    </div>
-  </div>
   <div class="wrapper">
+    <!-- fancy mouse icon -->
+    <div class="is-fixed-b">
+      <div class="is-flex is-justify-content-center">
+        <FancyMouseIcon @click="scrollMeTo('.scene2', 3)" />
+      </div>
+    </div>
     <!-- scene 1 -->
     <section class="scene1 hero is-fullheight">
       <div class="hero-body is-flex is-justify-content-center">
