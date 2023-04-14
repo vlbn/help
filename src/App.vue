@@ -15,8 +15,10 @@ gsap.registerPlugin(ScrollTrigger);
 let lmsInstance = ref();
 
 // --- the actors --- //
-let scene1Actor1 = ref();
-let scene1Actor2 = ref();
+let Actor1 = ref();
+let Actor2 = ref();
+let Actor3 = ref();
+let Actor4 = ref();
 
 // --- methods --- //
 const scrollMeTo = (target, duration) => {
@@ -58,39 +60,27 @@ onMounted(() => {
       scroller: ".wrapper",
       pin: true,
       pinSpacing: true,
-      start: "top%",
-      end: "bottom 50px",
+      start: "top 0%",
+      end: "bottom",
       scrub: 0.1,
       markers: false,
     },
   });
-  introTl.to(scene1Actor1.value, {
+  introTl.to(Actor1.value, {
     duration: 2.5,
     yPercent: 50,
     autoAlpha: 0,
   });
-  introTl.to(scene1Actor2.value, {
+  introTl.to(Actor2.value, {
     duration: 5.5,
     autoAlpha: 0,
     scale: 2.9,
     xPercent: 150,
   });
-
-  // --- scene 2 --- //
-
-  gsap.from(".namaste", {
-    scrollTrigger: {
-      trigger: ".scene2",
-      scroller: ".wrapper",
-      scrub: 1,
-      scaleZ: 2,
-      start: "top 250%",
-      end: "bottom 100%",
-    },
-    scaleX: 0,
-    transformOrigin: "center center",
-    ease: "none",
-    autoAlpha: 1,
+  introTl.to(Actor3.value, {
+    duration: 2.5,
+    y: 500,
+    autoAlpha: 0,
   });
 
   // --- scrollTrigger update, do not move this --- //
@@ -105,41 +95,37 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="wrapper">
-    <!-- fancy mouse icon -->
-    <div class="is-fixed-b">
-      <div class="is-flex is-justify-content-center">
-        <FancyMouseIcon @click="scrollMeTo('.scene2', 3)" />
-      </div>
+  <!-- fancy mouse icon -->
+  <div class="is-fixed-b">
+    <div class="is-flex is-justify-content-center pointer">
+      <FancyMouseIcon @click="gsap.to('.scene2', 1.5)" />
     </div>
+  </div>
+  <div class="wrapper">
     <!-- scene 1 -->
     <section class="scene1 hero is-fullheight">
       <div class="hero-body is-flex is-justify-content-center">
-        <div ref="scene1Actor1" class="mr-5">
+        <div ref="Actor1" class="mr-5">
           <img src="./assets/media/fancy.svg" />
         </div>
-        <div ref="scene1Actor2">
+        <div ref="Actor2">
           <strong>gsap</strong> excercise with
           <strong class="is-size-4">locomotive-scroll</strong> and
           <strong>vue</strong>
         </div>
-      </div>
-    </section>
-    <!-- scene 2 -->
-    <section class="scene2 hero is-fullheight">
-      <div class="hero-body is-flex is-justify-content-center">
-        <div
-          class="namaste m-6 pointer"
-          ref="scene2Actor1"
-          @click="scrollMeTo('.wrapper', 1.5)"
-        >
+        <div ref="scene1Actor3" class="pl-2 pt-2">♥</div>
+
+        <div class="m-6 pointer" @click="scrollMeTo('.wrapper', 1.5)" ref="Actor3">
           <img src="https://picsum.photos/900/600" />
         </div>
-
-        <div class="is-size-5">
+        <div class="is-size-5" ref="Actor4">
           <a href="https://github.com/vlbn/help"><GitHubLogo /></a>
         </div>
       </div>
+    </section>
+    <!-- scene 2 -->
+    <section class="scene2 hero is-fullheight is-danger">
+      <div class="hero-body is-flex is-justify-content-center"></div>
     </section>
   </div>
 </template>
