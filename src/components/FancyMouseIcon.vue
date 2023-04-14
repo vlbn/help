@@ -57,7 +57,25 @@ onMounted(() => {
 });
 
 // scroll direction listener
+
 let scrollPositionChange = ref();
+
+const handleScroll = () => {
+  console.log(window.pageYOffset);
+};
+
+window.addEventListener("scroll", handleScroll);
+
+watch(scrollPositionChange, () => {
+  if (scrollPositionChange.value) {
+    mwTl.reverse(0);
+  } else {
+    mwTl.reverse();
+    mwTl.play();
+  }
+});
+
+/*
 let oldValue = 0;
 let newValue = 0;
 window.addEventListener("scroll", (e) => {
@@ -69,17 +87,7 @@ window.addEventListener("scroll", (e) => {
   }
   oldValue = newValue;
 });
-
-watch(scrollPositionChange, () => {
-  if (scrollPositionChange.value) {
-    mwTl.reverse(0);
-  } else {
-    mwTl.reverse();
-    mwTl.play();
-  }
-});
-
-//
+*/
 </script>
 
 <template>
