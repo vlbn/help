@@ -74,3 +74,17 @@
     background-size: 100% 2px;
     background-repeat: repeat-x;
 }
+
+
+.vlbn {
+    background-image: url("https://picsum.photos/1920");
+    background-size: cover;
+    div > a {
+      display:inline-flex;
+      align-items: center;
+      h1 {
+          font-size: 7rem;
+          margin-left: 2rem;
+      }
+    }
+  }
