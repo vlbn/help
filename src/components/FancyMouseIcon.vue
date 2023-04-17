@@ -11,12 +11,15 @@ const props = defineProps({
     type: String,
     default: "#ffffff",
   },
+  scrollWheelDir: {
+    default: false,
+  },
 });
 
 let colorA_ = ref(props.colorA);
 let colorB_ = ref(props.colorB);
 
-// mouse-wheel TimeLine
+// mouse-wheel TimeLine instance
 let mwTl = ref();
 
 onMounted(() => {
@@ -54,40 +57,22 @@ onMounted(() => {
       y: 0,
       scale: 0,
     });
+
+  //
 });
 
-// scroll direction listener
+let isUserScrolling = ref(props.scrollWheelDir);
 
-let scrollPositionChange = ref();
-
-const handleScroll = () => {
-  console.log(window.pageYOffset);
-};
-
-window.addEventListener("scroll", handleScroll);
-
-watch(scrollPositionChange, () => {
-  if (scrollPositionChange.value) {
+watch(isUserScrolling, () => {
+  if (isUserScrolling.value) {
     mwTl.reverse(0);
   } else {
     mwTl.reverse();
-    mwTl.play();
+    mwTl.play(0);
   }
 });
 
-/*
-let oldValue = 0;
-let newValue = 0;
-window.addEventListener("scroll", (e) => {
-  newValue = window.pageYOffset;
-  if (oldValue > newValue) {
-    scrollPositionChange.value = false;
-  } else if (oldValue < newValue) {
-    scrollPositionChange.value = true;
-  }
-  oldValue = newValue;
-});
-*/
+//
 </script>
 
 <template>
@@ -100,7 +85,6 @@ window.addEventListener("scroll", (e) => {
 
 <style scoped>
 .mouse-container {
-  z-index: 9999 !important;
   margin: 3rem;
   width: 25px;
   height: 40px;
@@ -108,9 +92,8 @@ window.addEventListener("scroll", (e) => {
 .mouse-body {
   display: flex;
   justify-content: center;
-  cursor: pointer;
   height: 100%;
-  border: 0.1rem solid #6e6e6e60;
+  border: 0.1px solid #2e2e2e44;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
@@ -120,7 +103,6 @@ window.addEventListener("scroll", (e) => {
   margin-top: 0.3rem;
   width: 5px;
   height: 5px;
-  background: #6e6e6e;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
